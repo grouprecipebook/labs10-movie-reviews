@@ -6,11 +6,12 @@ const db = require('../../data/dbConfig.js');
 // USER HELPERS
 // ==============================================
 module.exports = {
-  getUsers: function(id) {
-    let query = db('users');
-    if (id) query.where('id', Number(id)).first();
-    if (debugging === true) console.log('GET Users Helper', '\nid:', id);
-    return query;
+  getUsers: function() {
+    return db('users')
+  },
+
+  getUsersById: function(id) {
+    return db('users').where('id', Number(id));
   },
   insert: function(user) {
     return db('users')

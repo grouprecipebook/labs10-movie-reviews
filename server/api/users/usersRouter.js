@@ -20,17 +20,11 @@ router.get('/users', async (req, res) => {
 
 // GET request that gets a user by id
 router.get('/users/:id', async (req, res) => {
-  try {
     const { id } = req.params;
-    const user = await usersDb.getUsers(id);
-    if (debugging === true) console.log('GET User By ID Router:', user);
-    user
-      ? res.status(200).json(user)
-      : res.status(404).json({ error: 'The user with the specified ID does not exist'})
-  } catch (err) {
-    res.status(500).json(err)
+    const user = await usersDb.getUsersById(id);
+      res.status(200).json(user);
   }
-})
+)
 
 // POST request to add a user
 router.post('/users', async (req, res) => {
